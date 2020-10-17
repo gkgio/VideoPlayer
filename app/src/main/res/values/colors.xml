@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1b1b1d</color>
+    <color name="accent">#6c1cff</color>
+    <color name="primary_dark">#000000</color>
+
+    <color name="button_color">#14ffffff</color>
+    <color name="toolbar">#19000000</color>
+    <color name="snack_bar">#4c000000</color>
+    <color name="horoscope_filter_date_stroke">#979797</color>
+    <color name="main_gradient_start">#5F02DD</color>
+    <color name="main_gradient_end">#AF01A2</color>
+    <color name="search_view_background">#14767680</color>
+    <color name="empty_view_text_color">#7e7e7e</color>
+    <color name="search_hint_color">#a0a0a7</color>
+    <color name="recycle_divider">#a6545458</color>
+    <color name="bottom_sheet_title_background">#242425</color>
+    <color name="card_color">#14707476</color>
+    <color name="text_card">#a3aaae</color>
+    <color name="bg_what_include">#3d767680</color>
+    <color name="text_what_include">#b4b4b4</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_4">#0affffff</color>
+    <color name="white_8">#14ffffff</color>
+    <color name="white_38">#616161</color>
+    <color name="white_40">#666161</color>
+    <color name="white_53">#87FFFFFF</color>
+    <color name="white_60">#99FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_80">#CCFFFFFF</color>
+    <color name="white_100">#00FFFFFF</color>
+
+    <color name="black">#000000</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="tab_dot_selected">#FFE1992A</color>
+
+</resources>
