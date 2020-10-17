@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.gkgio.videoplayer.presentation.LaunchActivity
 import com.gkgio.videoplayer.domain.errorreporter.ErrorReporter
+import com.gkgio.videoplayer.presentation.ExoPlayerCache
 import com.gkgio.videoplayer.presentation.LaunchViewModel
 import com.gkgio.videoplayer.presentation.base.BaseFragment
 import com.gkgio.videoplayer.presentation.base.BaseViewModel
@@ -43,6 +44,8 @@ interface AppComponent {
     val prefs: SharedPreferences
 
     val errorReporter: ErrorReporter
+
+    val exoPlayerCache: ExoPlayerCache
 
     //Cicerone
     val router: Router

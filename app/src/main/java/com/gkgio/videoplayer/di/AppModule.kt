@@ -9,6 +9,8 @@ import com.gkgio.videoplayer.BuildConfig
 import com.gkgio.videoplayer.data.DeviceInterceptor
 import com.gkgio.videoplayer.data.errorreporter.ErrorReporterImpl
 import com.gkgio.videoplayer.domain.errorreporter.ErrorReporter
+import com.gkgio.videoplayer.presentation.ExoPlayerCache
+import com.gkgio.videoplayer.presentation.ExoPlayerCacheImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Binds
@@ -105,6 +107,10 @@ class AppModule(private val app: Application) {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideExoPlayerCache(context: Context): ExoPlayerCache = ExoPlayerCacheImpl(context)
 
     @Module
     abstract inner class BindsModule {

@@ -14,8 +14,7 @@ object DialogUtils {
         buttonRightText: String,
         @DrawableRes iconRes: Int = 0,
         title: String? = null,
-        buttonLeftText: String? = null,
-        isCancelableDialog: Boolean = true
+        buttonLeftText: String? = null
     ) {
         InfoDialogFragment.getInstance(
             fragmentTag,
@@ -24,8 +23,7 @@ object DialogUtils {
             buttonRightText,
             iconRes,
             title,
-            buttonLeftText,
-            isCancelableDialog
+            buttonLeftText
         ).show(fragmentManager, InfoDialogFragment.TAG)
     }
 
