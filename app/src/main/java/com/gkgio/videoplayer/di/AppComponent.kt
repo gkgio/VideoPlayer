@@ -7,6 +7,7 @@ import com.gkgio.videoplayer.presentation.LaunchActivity
 import com.gkgio.videoplayer.domain.errorreporter.ErrorReporter
 import com.gkgio.videoplayer.presentation.ExoPlayerCache
 import com.gkgio.videoplayer.presentation.LaunchViewModel
+import com.gkgio.videoplayer.presentation.NewVideoUrlsEvent
 import com.gkgio.videoplayer.presentation.base.BaseFragment
 import com.gkgio.videoplayer.presentation.base.BaseViewModel
 import com.gkgio.videoplayer.presentation.feature.login.LoginViewModel
@@ -46,6 +47,8 @@ interface AppComponent {
     val errorReporter: ErrorReporter
 
     val exoPlayerCache: ExoPlayerCache
+
+    val newVideoUrlsEvent: NewVideoUrlsEvent
 
     //Cicerone
     val router: Router

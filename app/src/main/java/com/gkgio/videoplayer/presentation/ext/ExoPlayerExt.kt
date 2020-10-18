@@ -57,7 +57,6 @@ private fun setupPlayer(
     cacheDataSourceFactory: CacheDataSourceFactory? = null
 ) = with(simpleExoPlayer) {
     isVolumeEnabled = isVolume
-    repeatMode = Player.REPEAT_MODE_ALL
     prepare(currentPrepare(context, url, cacheDataSourceFactory))
     playWhenReady = true
 }
