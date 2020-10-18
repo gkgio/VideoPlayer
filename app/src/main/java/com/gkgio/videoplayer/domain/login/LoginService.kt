@@ -4,5 +4,10 @@ import com.gkgio.videoplayer.domain.video.VideoData
 import io.reactivex.Single
 
 interface LoginService {
-    fun login(instanceId: String, carNumber: String, phoneNumber: String): Single<VideoData>
+    fun login(
+        instanceId: String,
+        carNumber: String,
+        phoneNumber: String,
+        pushToken: String
+    ): Single<VideoData>
 }

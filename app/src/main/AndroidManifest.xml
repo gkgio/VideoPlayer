@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.gkgio.videoplayer">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,7 +17,10 @@
         android:theme="@style/AppTheme"
 
         tools:ignore="AllowBackup">
-        <activity android:name=".presentation.LaunchActivity">
+        <activity
+            android:name=".presentation.LaunchActivity"
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

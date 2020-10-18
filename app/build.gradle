@@ -36,9 +36,9 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("horoscope.jks")
+            storeFile file("videoplayer.jks")
             storePassword '21091995gio'
-            keyAlias 'horoscope-app'
+            keyAlias 'videoplayer-app'
             keyPassword '21091995gio'
         }
     }
@@ -47,12 +47,11 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            // signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
-            applicationIdSuffix ".dev"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -96,9 +95,15 @@ dependencies {
 
     implementation "com.google.android.material:material:1.2.1"
 
+    implementation "com.google.firebase:firebase-messaging:20.3.0"
+
+    implementation "com.redmadrobot:input-mask-android:5.0.0"
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'

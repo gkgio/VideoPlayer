@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1062525310905",
+    "firebase_url": "https://videoplayer-90392.firebaseio.com",
+    "project_id": "videoplayer-90392",
+    "storage_bucket": "videoplayer-90392.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062525310905:android:8c9948aa9638e1f6140868",
+        "android_client_info": {
+          "package_name": "com.gkgio.videoplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062525310905-v1sb2mbfdjmi36eldm69q4ve6ugm44am.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlvwRZ0zSnO8BY7Sufdq3Kkmu58fcRLJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062525310905-v1sb2mbfdjmi36eldm69q4ve6ugm44am.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,7 +19,8 @@ class LoginServiceImpl @Inject constructor(
     override fun login(
         instanceId: String,
         carNumber: String,
-        phoneNumber: String
+        phoneNumber: String,
+        pushToken: String
     ): Single<VideoData> =
         loginServiceApi.getHairSalonData(
             LoginRequest(

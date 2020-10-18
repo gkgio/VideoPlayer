@@ -19,6 +19,10 @@
     <color name="text_card">#a3aaae</color>
     <color name="bg_what_include">#3d767680</color>
     <color name="text_what_include">#b4b4b4</color>
+    <color name="grey_text">#a3aaae</color>
+
+    <color name="btn_color">#ff5a5f</color>
+    <color name="btn_color_40">#66ff5a5f</color>
 
     <color name="white">#FFFFFF</color>
     <color name="white_4">#0affffff</color>

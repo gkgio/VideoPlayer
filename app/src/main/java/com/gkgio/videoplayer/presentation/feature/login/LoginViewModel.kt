@@ -1,5 +1,6 @@
 package com.gkgio.videoplayer.presentation.feature.login
 
+import androidx.lifecycle.MutableLiveData
 import com.gkgio.videoplayer.domain.login.LoginRepository
 import com.gkgio.videoplayer.domain.login.LoginUseCase
 import com.gkgio.videoplayer.domain.video.VideoRepository
@@ -21,29 +22,40 @@ class LoginViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val errorEvent = SingleLiveEvent<String>()
+    val pushErrorEvent = SingleLiveEvent<Unit>()
+    val progress=MutableLiveData<Boolean>()
 
     fun login(phone: String, carNumber: String) {
-        if (phone.isNotEmpty() && carNumber.isNotEmpty()) {
-            val instanceId = UUID.randomUUID().toString()
-            loginUseCase
-                .login(
-                    instanceId = instanceId,
-                    carNumber = carNumber,
-                    phoneNumber = phone
-                )
-                .map { videoUrlsTransformer.transform(it) }
-                .applySchedulers()
-                .subscribe({
-                    loginRepository.setLoginSuccess(
+        val pushToken = loginRepository.getPushToken()
+        if (pushToken == null) {
+            pushErrorEvent.call()
+        } else {
+            if (phone.isNotEmpty() && carNumber.isNotEmpty()) {
+                val instanceId = UUID.randomUUID().toString()
+                progress.value=true
+                loginUseCase
+                    .login(
                         instanceId = instanceId,
                         carNumber = carNumber,
-                        phoneNumber = phone
+                        phoneNumber = phone,
+                        pushToken = pushToken
                     )
-                    videoRepository.saveVideosUrls(it)
-                    router.newRootScreen(Screens.VideoFragmentScreen)
-                }, { throwable ->
-                    errorEvent.value = throwable.message
-                }).addDisposable()
+                    .map { videoUrlsTransformer.transform(it) }
+                    .applySchedulers()
+                    .subscribe({
+                        progress.value=false
+                        loginRepository.setLoginSuccess(
+                            instanceId = instanceId,
+                            carNumber = carNumber,
+                            phoneNumber = phone
+                        )
+                        videoRepository.saveVideosUrls(it)
+                        router.newRootScreen(Screens.VideoFragmentScreen)
+                    }, { throwable ->
+                        progress.value=false
+                        errorEvent.value = throwable.message
+                    }).addDisposable()
+            }
         }
     }
 }

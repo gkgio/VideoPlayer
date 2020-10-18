@@ -15,9 +15,14 @@ class LoginRepositoryImpl @Inject constructor(
     companion object {
         const val SUCCESS_LOGIN = "success_login"
         const val DATA_LOGIN = "data_login"
+        const val PUSH_TOKEN = "push_token"
     }
 
-    override fun setLoginSuccess(instanceId: String, carNumber: String, phoneNumber: String) {
+    override fun setLoginSuccess(
+        instanceId: String,
+        carNumber: String,
+        phoneNumber: String
+    ) {
         val adapter = moshi.adapter(LoginRequest::class.java)
         prefs.edit().putString(
             DATA_LOGIN, adapter.toJson(
@@ -41,4 +46,11 @@ class LoginRepositoryImpl @Inject constructor(
 
     override fun isLoginSuccess(): Boolean =
         prefs.getBoolean(SUCCESS_LOGIN, false)
+
+    override fun savePushToken(token: String) {
+        prefs.edit().putString(PUSH_TOKEN, token).apply()
+    }
+
+    override fun getPushToken(): String? =
+        prefs.getString(PUSH_TOKEN, null)
 }
