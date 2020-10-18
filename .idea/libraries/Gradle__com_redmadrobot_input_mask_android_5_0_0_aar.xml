@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.redmadrobot:input-mask-android:5.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a3e3c07a408885b6e78648e774269c0e/jetified-input-mask-android-5.0.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1a1651fe0fc6be81ff46a989231e33e7/jetified-input-mask-android-5.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1a1651fe0fc6be81ff46a989231e33e7/jetified-input-mask-android-5.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1a1651fe0fc6be81ff46a989231e33e7/jetified-input-mask-android-5.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1a1651fe0fc6be81ff46a989231e33e7/jetified-input-mask-android-5.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

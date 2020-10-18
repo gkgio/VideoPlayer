@@ -4,6 +4,7 @@ import com.gkgio.videoplayer.data.video.VideoDataResponse
 import com.gkgio.videoplayer.data.video.VideoDataTransformer
 import com.gkgio.videoplayer.domain.login.LoginService
 import com.gkgio.videoplayer.domain.video.VideoData
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -26,9 +27,36 @@ class LoginServiceImpl @Inject constructor(
             LoginRequest(
                 instanceId = instanceId,
                 carNumber = carNumber,
-                phoneNumber = phoneNumber
+                phoneNumber = phoneNumber,
+                pushToken = pushToken
             )
         ).map { videoDataTransformer.transform(it) }
+
+    override fun criticalBatteryLevel(
+        instanceId: String,
+        carNumber: String,
+        phoneNumber: String
+    ): Completable =
+        loginServiceApi.criticalBatteryLevel(
+            LoginRequest(
+                instanceId = instanceId,
+                carNumber = carNumber,
+                phoneNumber = phoneNumber
+            )
+        )
+
+    override fun shutDown(
+        instanceId: String,
+        carNumber: String,
+        phoneNumber: String
+    ): Completable =
+        loginServiceApi.shutDown(
+            LoginRequest(
+                instanceId = instanceId,
+                carNumber = carNumber,
+                phoneNumber = phoneNumber
+            )
+        )
 
     interface LoginServiceApi {
 
@@ -36,5 +64,15 @@ class LoginServiceImpl @Inject constructor(
         fun getHairSalonData(
             @Body request: LoginRequest
         ): Single<VideoDataResponse>
+
+        @POST("login")
+        fun criticalBatteryLevel(
+            @Body request: LoginRequest
+        ): Completable
+
+        @POST("login")
+        fun shutDown(
+            @Body request: LoginRequest
+        ): Completable
     }
 }

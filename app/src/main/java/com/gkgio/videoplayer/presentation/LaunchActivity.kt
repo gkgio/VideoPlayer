@@ -1,11 +1,16 @@
 package com.gkgio.videoplayer.presentation
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
+import android.os.BatteryManager
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.forEach
 import com.gkgio.videoplayer.R
@@ -16,8 +21,14 @@ import com.gkgio.videoplayer.presentation.navigation.Navigator
 import kotlinx.android.synthetic.main.activity_launch.*
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
+import kotlin.math.roundToInt
+
 
 class LaunchActivity : AppCompatActivity() {
+
+    companion object {
+        private const val CRITICAL_BATTERY_LEVEL = 20
+    }
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
@@ -47,6 +58,11 @@ class LaunchActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             viewModel.onNewStart()
         }
+
+        val phoneStateFilter = IntentFilter()
+        phoneStateFilter.addAction(Intent.ACTION_BATTERY_CHANGED)
+        phoneStateFilter.addAction(Intent.ACTION_SHUTDOWN)
+        registerReceiver(batteryStateReceiver, phoneStateFilter)
     }
 
     override fun onResumeFragments() {
@@ -76,5 +92,26 @@ class LaunchActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    private val batteryStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            when (intent.action) {
+                Intent.ACTION_SHUTDOWN -> {
+                    viewModel.shutDown()
+                }
+
+                Intent.ACTION_BATTERY_CHANGED -> {
+                    val maximumBattery = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0)
+                    val currentBattery = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
+                    val fPercent = currentBattery.toFloat() / maximumBattery.toFloat() * 100f
+                    val percent = fPercent.roundToInt()
+
+                    if (percent < CRITICAL_BATTERY_LEVEL) {
+                        viewModel.criticalBatteryLevel()
+                    }
+                }
+            }
+        }
     }
 }

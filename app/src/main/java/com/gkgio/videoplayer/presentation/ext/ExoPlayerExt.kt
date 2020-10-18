@@ -2,9 +2,14 @@ package com.gkgio.videoplayer.presentation.ext
 
 import android.content.Context
 import android.net.Uri
+import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.source.dash.DashMediaSource
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
+import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -65,18 +70,27 @@ private fun currentPrepare(
     context: Context,
     url: String,
     cacheDataSourceFactory: CacheDataSourceFactory? = null
-) = cacheDataSourceFactory?.let { getCacheMediaSource(url, it) } ?: getMediaSource(url, context)
+) = cacheDataSourceFactory?.let { createSimpleMediaSource(Uri.parse(url), it) }
+    ?: createSimpleMediaSource(
+        Uri.parse(url),
+        DefaultHttpDataSourceFactory(Util.getUserAgent(context, EXO_PLAYER_USER_AGENT))
+    )
 
-private fun getMediaSource(url: String, context: Context) = ProgressiveMediaSource
-    .Factory(DefaultHttpDataSourceFactory(Util.getUserAgent(context, EXO_PLAYER_USER_AGENT)))
-    .createMediaSource(Uri.parse(url))
+fun createSimpleMediaSource(
+    uri: Uri,
+    dataSourceFactory: DataSource.Factory
+): MediaSource {
+    @C.ContentType val type: Int =
+        Util.inferContentType(uri)
 
-private fun getCacheMediaSource(
-    url: String,
-    cacheDataSourceFactory: CacheDataSourceFactory
-) = ProgressiveMediaSource
-    .Factory(cacheDataSourceFactory)
-    .createMediaSource(Uri.parse(url))
+    return when (type) {
+        C.TYPE_DASH -> DashMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+        C.TYPE_SS -> SsMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+        C.TYPE_HLS -> HlsMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+        C.TYPE_OTHER -> ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+        else -> throw IllegalStateException("Unsupported type: $type")
+    }
+}
 
 class CacheDataSourceFactory(
     context: Context,

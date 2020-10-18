@@ -11,4 +11,6 @@ class LoginRequest(
     val carNumber: String,
     @Json(name = "phone_number")
     val phoneNumber: String,
+    @Json(name = "push_token")
+    val pushToken: String? = null
 )

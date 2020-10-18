@@ -4,7 +4,6 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/23ab05d2bfdfae715b04d7cdd9d1cd26/jetified-exoplayer-hls-2.12.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3d1a1a901eb9b2f8c9fdeb28d512ec23/jetified-exoplayer-hls-2.12.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/23ab05d2bfdfae715b04d7cdd9d1cd26/jetified-exoplayer-hls-2.12.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/23ab05d2bfdfae715b04d7cdd9d1cd26/jetified-exoplayer-hls-2.12.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/23ab05d2bfdfae715b04d7cdd9d1cd26/jetified-exoplayer-hls-2.12.0/AndroidManifest.xml" />
