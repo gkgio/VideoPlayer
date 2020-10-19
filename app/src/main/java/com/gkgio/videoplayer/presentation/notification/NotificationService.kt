@@ -6,10 +6,13 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import javax.inject.Inject
 
-class NotificationService @Inject constructor(
-    private val newVideoUrlsEvent: NewVideoUrlsEvent,
-    private val loginRepository: LoginRepository
-) : FirebaseMessagingService() {
+class NotificationService : FirebaseMessagingService() {
+
+    @Inject
+    lateinit var newVideoUrlsEvent: NewVideoUrlsEvent
+
+    @Inject
+    lateinit var loginRepository: LoginRepository
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)

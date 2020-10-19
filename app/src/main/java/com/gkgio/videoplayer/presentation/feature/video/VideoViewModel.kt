@@ -33,13 +33,13 @@ class VideoViewModel @Inject constructor(
     init {
         state.value = State(exoPlayerCache = exoPlayerCache)
 
-//        val videosUrlsObject = VideoUrls(
-//            listOf(
-//                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-//                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-//                "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4"
-//            )
-//        )
+        /*  val videosUrlsObject = VideoUrls(
+              listOf(
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                  "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4"
+              )
+          )*/
         val videosUrlsObject = videoRepository.loadVideoUrls()
         if (videosUrlsObject != null) {
             state.value = state.nonNullValue.copy(

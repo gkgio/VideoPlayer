@@ -25,6 +25,13 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -99,7 +106,7 @@ dependencies {
 
     implementation "com.redmadrobot:input-mask-android:5.0.0"
 
-    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-analytics:17.6.0'
 
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
 
